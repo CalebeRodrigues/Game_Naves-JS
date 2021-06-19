@@ -12,18 +12,54 @@
         $("#fundoGame").append("<div id='amigo' class='anima3'></div>");
 
 
-        let jogo = {}
+
+        const jogo = {}
         jogo.timer = setInterval(loop,30);
         
+        const TECLA = {
+            W: 87,
+            S: 83,
+            D: 68
+        }
+        
+        jogo.pressionou = [];
+
+        $(document).keydown(function(e){
+            jogo.pressionou[e.which] = true;
+            });
+        
+        $(document).keyup(function(e){
+            jogo.pressionou[e.which] = false;
+        });
+
         function loop() {
         
-            movefundo();
+            moveFundo();
+            moveJogador();
         
-        } // Fim da função loop()
+        }
 
-        function movefundo() {
+        function moveFundo() {
             esquerda = parseInt($("#fundoGame").css("background-position"));
-            $("#fundoGame").css("background-position",esquerda-20);   
+            $("#fundoGame").css("background-position",esquerda-15);   
+        }
+
+        function moveJogador() {
+	
+            if (jogo.pressionou[TECLA.W]) {
+                var topo = parseInt($("#jogador").css("top"));
+                $("#jogador").css("top",topo-5);
+            }
+            
+            if (jogo.pressionou[TECLA.S]) {
+                var topo = parseInt($("#jogador").css("top"));
+                $("#jogador").css("top",topo+5);	
+            }
+            
+            if (jogo.pressionou[TECLA.D]) {
+                //Chama função Disparo	
+            }
+        
         }
 
     }
