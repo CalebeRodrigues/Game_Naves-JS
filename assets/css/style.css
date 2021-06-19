@@ -40,10 +40,10 @@ body {
 }
 
 #inimigo1 {
-	width: 256px;
+	width: 262px;
 	height: 66px;
 	position: absolute;
-	left: 689px;
+	left: 690px;
 	top: 253px;
 	background-image:url(../img/inimigo1.png);
 	

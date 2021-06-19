@@ -16,6 +16,9 @@
         const jogo = {}
         jogo.timer = setInterval(loop,30);
         
+        const velocidade = 10;
+        let posicaoY = parseInt(Math.random() * 370);
+
         const TECLA = {
             W: 87,
             S: 83,
@@ -36,6 +39,7 @@
         
             moveFundo();
             moveJogador();
+            moveinimigo1();
         
         }
 
@@ -48,18 +52,32 @@
 	
             if (jogo.pressionou[TECLA.W]) {
                 var topo = parseInt($("#jogador").css("top"));
-                $("#jogador").css("top",topo-5);
+                if (topo>=10) $("#jogador").css("top",topo-5);
             }
             
             if (jogo.pressionou[TECLA.S]) {
                 var topo = parseInt($("#jogador").css("top"));
-                $("#jogador").css("top",topo+5);	
+                if (topo<=435) $("#jogador").css("top",topo+5); 
             }
             
             if (jogo.pressionou[TECLA.D]) {
                 //Chama função Disparo	
             }
         
+        }
+
+        function moveinimigo1() {
+
+            posicaoX = parseInt($("#inimigo1").css("left"));
+            $("#inimigo1").css("left",posicaoX-velocidade);
+            $("#inimigo1").css("top",posicaoY);
+                
+                if (posicaoX<=-10) {
+                posicaoY = parseInt(Math.random() * 334);
+                $("#inimigo1").css("left",696);
+                $("#inimigo1").css("top",posicaoY);
+                    
+                }
         }
 
     }
