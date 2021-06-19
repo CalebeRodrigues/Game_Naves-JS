@@ -39,25 +39,27 @@
         
             moveFundo();
             moveJogador();
-            moveinimigo1();
-        
+            moveInimigo1();
+            moveInimigo2();
+            moveAmigo();
+
         }
 
-        function moveFundo() {
+        function moveFundo () {
             esquerda = parseInt($("#fundoGame").css("background-position"));
             $("#fundoGame").css("background-position",esquerda-15);   
         }
 
-        function moveJogador() {
+        function moveJogador () {
 	
             if (jogo.pressionou[TECLA.W]) {
                 var topo = parseInt($("#jogador").css("top"));
-                if (topo>=10) $("#jogador").css("top",topo-5);
+                if (topo>=10) $("#jogador").css("top",topo-10);
             }
             
             if (jogo.pressionou[TECLA.S]) {
                 var topo = parseInt($("#jogador").css("top"));
-                if (topo<=435) $("#jogador").css("top",topo+5); 
+                if (topo<=435) $("#jogador").css("top",topo+10); 
             }
             
             if (jogo.pressionou[TECLA.D]) {
@@ -66,7 +68,7 @@
         
         }
 
-        function moveinimigo1() {
+        function moveInimigo1 () {
 
             posicaoX = parseInt($("#inimigo1").css("left"));
             $("#inimigo1").css("left",posicaoX-velocidade);
@@ -78,6 +80,26 @@
                 $("#inimigo1").css("top",posicaoY);
                     
                 }
+        }
+
+        function moveInimigo2 () {
+            posicaoX = parseInt($("#inimigo2").css("left"));
+            $("#inimigo2").css("left",posicaoX-5);
+                    
+            if (posicaoX<=0) {
+                
+            $("#inimigo2").css("left",775);
+                        
+            }
+        }
+
+        function moveAmigo() {
+            posicaoX = parseInt($("#amigo").css("left"));
+            $("#amigo").css("left",posicaoX+1.5);
+                        
+            if (posicaoX>906) {                
+                $("#amigo").css("left",0);           
+            }        
         }
 
     }
