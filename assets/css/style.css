@@ -67,6 +67,13 @@ body {
 	background-image:url(../img/amigo.png);
 }
 
+#disparo {
+	width: 50px;
+	height: 8px;
+	position: absolute;
+	background-image: url(../img/disparo.png);
+}
+
 #inicio {
 	width:350px;
 	height:200px;

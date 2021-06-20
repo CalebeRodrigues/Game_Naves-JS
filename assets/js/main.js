@@ -27,6 +27,8 @@
         
         jogo.pressionou = [];
 
+        let podeAtirar=true;
+
         $(document).keydown(function(e){
             jogo.pressionou[e.which] = true;
             });
@@ -42,7 +44,7 @@
             moveInimigo1();
             moveInimigo2();
             moveAmigo();
-
+            colisao();
         }
 
         function moveFundo () {
@@ -63,9 +65,37 @@
             }
             
             if (jogo.pressionou[TECLA.D]) {
-                //Chama função Disparo	
+                disparo();
             }
         
+        }
+
+        function disparo() {
+            let tempoDisparo;
+            if (podeAtirar==true) {
+                podeAtirar=false;
+                
+                topo = parseInt($("#jogador").css("top"))
+                posicaoX= parseInt($("#jogador").css("left"))
+                tiroX = posicaoX + 190;
+                topoTiro=topo+37;
+                $("#fundoGame").append("<div id='disparo'></div");
+                $("#disparo").css("top",topoTiro);
+                $("#disparo").css("left",tiroX);
+                
+                tempoDisparo = window.setInterval(executaDisparo, 30);
+            } 
+            function executaDisparo() {
+                posicaoX = parseInt($("#disparo").css("left"));
+                $("#disparo").css("left",posicaoX+30); 
+
+                if (posicaoX>900) {
+                    window.clearInterval(tempoDisparo);
+                    tempoDisparo=null;
+                    $("#disparo").remove();
+                    podeAtirar=true;
+                }
+            } 
         }
 
         function moveInimigo1 () {
@@ -100,6 +130,12 @@
             if (posicaoX>906) {                
                 $("#amigo").css("left",0);           
             }        
+        }
+
+        function colisao() {
+            let colisao1 = ($("#jogador").collision($("#inimigo1")));
+            // jogador com o inimigo1
+           console.log(colisao1);
         }
 
     }
