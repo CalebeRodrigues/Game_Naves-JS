@@ -9,6 +9,12 @@ h1 {
 	color:#603A03;
 }
 
+h2 {
+	font-family:Titulo;
+	font-size:20px;
+	color:#FFF
+}
+
 body {
 	background-image:url(../img/fundo.jpg);
 }
@@ -28,6 +34,22 @@ body {
 	background-image:url(../img/fundo_game.jpg);
 	border-color:#FFF;
 	border-style:solid;
+}
+
+#placar {
+	width: 450px;
+	height: 50px;
+	position: absolute;
+	left: 5px;
+	top: 590px;
+}
+
+#energia {
+	width: 140px;
+	height: 38px;
+	position: absolute;
+	left: 750px;
+	top: 7px;	
 }
 
 #jogador {
@@ -83,6 +105,12 @@ body {
 #explosao2 {
 	width:15px;
 	height:87px;
+	position:absolute;
+}
+
+#explosao3 {
+	width:44px;
+	height:51px;
 	position:absolute;
 }
 
@@ -174,4 +202,40 @@ body {
 @-o-keyframes play2 {
    from { background-position: 0px; }
      to { background-position: -528px; }
+}
+
+.anima4 {
+	width:44px;
+	height:51px;
+	background-image:url(../img/amigo_morte.png);
+	animation:play3 .5s steps(7) infinite;
+	-webkit-animation: play3 .5s steps(7) infinite;
+	-moz-animation: play3 .5s steps(7) infinite;
+	-ms-animation: play3 .5s steps(7) infinite;
+	-o-animation: play3 .5s steps(7) infinite;
+}
+
+@keyframes play3 {
+	from {background-position:0px;}
+	to {background-position:-308px;}
+}
+
+@-webkit-keyframes play3 {
+   from { background-position:    0px; }
+     to { background-position: -308px; }
+}
+
+@-moz-keyframes play3 {
+   from { background-position:    0px; }
+     to { background-position: -308px; }
+}
+
+@-ms-keyframes play3 {
+   from { background-position:    0px; }
+     to { background-position: -308px; }
+}
+
+@-o-keyframes play3 {
+   from { background-position:    0px; }
+     to { background-position: -308px; }
 }
