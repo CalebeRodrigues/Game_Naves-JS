@@ -31,7 +31,7 @@
         let somPerdido=document.getElementById("somPerdido");
         let somResgate=document.getElementById("somResgate");
 
-        let velocidade = 10;
+        let velocidade = 8;
         let posicaoY = parseInt(Math.random() * 370);
 
         musica.addEventListener("ended", function(){ musica.currentTime = 0; musica.play(); }, false);
@@ -80,12 +80,12 @@
 	
             if (jogo.pressionou[TECLA.W]) {
                 var topo = parseInt($("#jogador").css("top"));
-                if (topo>=10) $("#jogador").css("top",topo-10);
+                if (topo>=10) $("#jogador").css("top",topo-15);
             }
             
             if (jogo.pressionou[TECLA.S]) {
                 var topo = parseInt($("#jogador").css("top"));
-                if (topo<=435) $("#jogador").css("top",topo+10); 
+                if (topo<=435) $("#jogador").css("top",topo+15); 
             }
             
             if (jogo.pressionou[TECLA.D]) {
@@ -117,8 +117,8 @@
                 if (posicaoX>900) {
                     window.clearInterval(tempoDisparo);
                     tempoDisparo=null;
-                    $("#disparo").remove();
                     podeAtirar=true;
+                    $("#disparo").remove();
                 }
             } 
         }
@@ -332,7 +332,26 @@
         
             if (energiaAtual==0) {
                 $("#energia").css("background-image", "url(./assets/img/energia0.png)");
+                gameOver();
             }
+        }
+
+        function gameOver() {
+            fimdejogo=true;
+            musica.pause();
+            somGameover.play();
+            
+            window.clearInterval(jogo.timer);
+            jogo.timer=null;
+            
+            $("#jogador").remove();
+            $("#inimigo1").remove();
+            $("#inimigo2").remove();
+            $("#amigo").remove();
+            
+            $("#fundoGame").append("<div id='fim'></div>");
+            
+            $("#fim").html("<h1> Game Over </h1><p>Sua pontuação foi: " + pontos + "</p>" + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>");
         }
 
     }
