@@ -1,8 +1,12 @@
 (() => {
     const inicio = document.querySelector('#inicio');
+    let reinicia;
+    let recorde = 0;
 
     inicio.addEventListener('click', () => start());
     
+
+
     function start() {
         $("#inicio").hide();
         
@@ -197,14 +201,14 @@
                 explosao1(inimigo1X,inimigo1Y);
                 $("#disparo").css("left",950);
                 
-                velocidade += 0.1;
+                velocidade += 0.5;
                 posicaoY = parseInt(Math.random() * 334);
                 $("#inimigo1").css("left",694);
                 $("#inimigo1").css("top",posicaoY);       
             }
 
             if (colisao4.length>0) {
-                pontos=pontos+50;
+                pontos=pontos+20;
                 inimigo2X = parseInt($("#inimigo2").css("left"));
                 inimigo2Y = parseInt($("#inimigo2").css("top"));
                 $("#inimigo2").remove();
@@ -216,6 +220,7 @@
             }
 
             if (colisao5.length>0) {
+                pontos+=5;
                 salvos++;
                 somResgate.play();
                 reposicionaAmigo();
@@ -350,10 +355,27 @@
             $("#amigo").remove();
             
             $("#fundoGame").append("<div id='fim'></div>");
+
+            recorde = (recorde < pontos) ? pontos : recorde;
             
-            $("#fim").html("<h1> Game Over </h1><p>Sua pontuação foi: " + pontos + "</p>" + "<div id='reinicia' onClick=reiniciaJogo()><h3>Jogar Novamente</h3></div>");
+            $("#fim").html(
+                "<h1> Game Over </h1>" + 
+                "<p>Recorde atual: " + recorde + " pontos</p>" + 
+                "<p>Sua pontuação foi: " + pontos + " pontos</p>" + 
+                "<div id='reinicia'><h3>Jogar Novamente</h3></div>"
+            );
+
+            reinicia = document.querySelector('#reinicia');
+
+            reinicia.addEventListener('click', reiniciaJogo);
         }
 
+    }
+
+    function reiniciaJogo() {
+        somGameover.pause();
+        $("#fim").remove();
+        start();
     }
 })()
 
